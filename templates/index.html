@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h3>Funds in your wallet: {{ cash | usd }}</h2>
+
+
+    <h5>Your Portfolio:</h5>
+    <table class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Stock</th>
+                <th>Number of Shares</th>
+                <th>Current Price</th>
+                <th>Market Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row.stock }}</td>
+                <td>{{ row.shares }}</td>
+                <td>{{ row.current_price | usd }}</td>
+                <td>{{ row.total | usd }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total Market Value: {{ marketvalue | usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

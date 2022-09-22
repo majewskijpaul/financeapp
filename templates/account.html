@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+{% block main %}
+
+
+    <h5>Your Account Settings:</h5>
+    <div class="d-inline-flex col-sm-4">
+        <button class="col sm-2 btn btn-primary brn-block m-2" data-bs-toggle="collapse" data-bs-target="#addfunds" type="button">Add Funds to Wallet</button>
+        <button class="col sm-2 btn btn-primary btn-block m-2" data-bs-toggle="collapse" data-bs-target="#changepass" type="button">Change Password</button>
+    </div>
+
+    <div class="collapse" id="addfunds">
+        <div class="card card-body">
+            <h2>Current cash: {{ cash | usd}}</h2>
+            <form action="/account" method="post">
+                <p>You cannot add more than $10000 at a time</p>
+                <div class="mb-3">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="add" name="add" placeholder="Money to Add" type="number">
+                </div>
+                <button class="btn btn-primary" type="submit">Add Funds</button>
+            </form>
+        </div>
+    </div>
+    <div class="collapse" id="changepass">
+        <div class="card card-body">
+            <form action="/account" method="post">
+                <div>
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="oldpass" name="oldpass" placeholder="Old Password" type="password">
+                </div>
+                <div>
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="newpass" name="newpass" placeholder="New Password" type="password">
+                </div>
+                <div>
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="confirm" name="confirm" placeholder="Confirm New Password" type="password">
+                </div>
+                <button class="btn btn-primary" type="submit">Change Password</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
